@@ -37,7 +37,7 @@ namespace BibApplication
             }
             else if (usertype == "2")
             {
-                employé(bibliotheek);
+                employee(bibliotheek);
             }
             else if (usertype == "")
             {
@@ -47,7 +47,7 @@ namespace BibApplication
         }
         static void member(CollectieBibliotheek bibliotheek)
         {
-            var user = connectionmembre(bibliotheek);
+            var user = memberlogin(bibliotheek);
             while (true)
             {
                 ZoekJouwItem(user);
@@ -61,9 +61,9 @@ namespace BibApplication
                 ZoekJouwItem(user);
             }
         }
-        static void employé(CollectieBibliotheek bibliotheek)
+        static void employee(CollectieBibliotheek bibliotheek)
         {
-            var user = Medewerker.PromoveerLidNaarMedewerker(connectionmembre(bibliotheek));
+            var user = Medewerker.PromoveerLidNaarMedewerker(memberlogin(bibliotheek));
             while (true)
             {
                 ZoekJouwItem(user);
@@ -86,7 +86,7 @@ namespace BibApplication
                 return new Bezoeker(bibliotheek, Familyname, Firstname);
             } while (true);
         }
-        static Lid connectionmembre(CollectieBibliotheek bibliotheek)
+        static Lid memberlogin(CollectieBibliotheek bibliotheek)
         {
             do
             {
