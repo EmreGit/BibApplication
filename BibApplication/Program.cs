@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BibApplication
 {
@@ -11,31 +7,30 @@ namespace BibApplication
         static void Main(string[] args)
         {
             var bibliotheek = new CollectieBibliotheek();
-            bibliotheek.ItemsInCollectie.Add(new Item(SoortItem.Boek, "1", "The Invited", "","","", 0));
+            bibliotheek.ItemsInCollectie.Add(new Item(SoortItem.Boek, "1", "The Invited - Jennifer McMahon", "","","", 0));
             string usertype = null;
 
             while (usertype != "1" && usertype != "2" && usertype != "")
             {
-                Console.WriteLine("Tapez 1 pour entrer en tant que membre, tapez 2 pour employées (appuyer seulement sur ENTER pour rester en tant que visiteur)");
+                Console.WriteLine("Typ 1 om als lid in te loggen, typ 2 om als medewerker in te loggen (alleen op ENTER drukken om als bezoeker ingelogd te blijven !)");
                 usertype = Console.ReadLine();
                 if (usertype == "1")
                 {
-                    Console.WriteLine("Vous etes membre !");
+                    Console.WriteLine("Jij bent lid !");
                 }
                 else if (usertype == "2")
                 {
-                    Console.WriteLine("Vous etes un employé !");
+                    Console.WriteLine("Jij bent medewerker !");
                 }
                 else if (usertype == "")
                 {
-                    Console.WriteLine("Vous restez visiteur");
+                    Console.WriteLine("Jij bent een bezoeker !");
                 }
                 else
                 {
-                    Console.WriteLine("WRONG INPUT, ERROR 666");
+                    Console.WriteLine("WRONG INPUT, ERROR 405");
                 }
             }
-
             if (usertype == "1")
             {
                 member(bibliotheek);
@@ -78,16 +73,16 @@ namespace BibApplication
         {
             do
             {
-                Console.WriteLine("Type your first name");
+                Console.WriteLine("Typ jouw eerste naam in: ");
                 string Firstname = Console.ReadLine().Trim();
-                Console.WriteLine("Type your family name");
+                Console.WriteLine("Typ jouw familienaam in: ");
                 string Familyname = Console.ReadLine().Trim();
                 if (string.IsNullOrEmpty(Firstname) || string.IsNullOrEmpty(Familyname))
                 {
-                    Console.WriteLine("Please enter ONLY LETTERS");
+                    Console.WriteLine("ALLEEN letters invullen");
                     continue;
                 }
-                Console.WriteLine("Vous etes connecté");
+                Console.WriteLine("Jij bent ingelogd !");
                 return new Bezoeker(bibliotheek, Familyname, Firstname);
             } while (true);
         }
@@ -95,33 +90,33 @@ namespace BibApplication
         {
             do
             {
-                Console.WriteLine("Type your first name");
+                Console.WriteLine("Typ jouw eerste naam in: ");
                 string Firstname = Console.ReadLine().Trim();
-                Console.WriteLine("Type your family name");
+                Console.WriteLine("Typ jouw familienaam in: ");
                 string Familyname = Console.ReadLine().Trim();
-                Console.WriteLine("Type your birthdate");
+                Console.WriteLine("Typ jouw geboortedatum in: ");
                 string Birthdate = Console.ReadLine().Trim();
                 if (string.IsNullOrEmpty(Firstname) || string.IsNullOrEmpty(Familyname))
                 {
-                    Console.WriteLine("Please enter ONLY LETTERS");
+                    Console.WriteLine("Alleen letter gebruiken !");
                     continue;
                 }
-                Console.WriteLine("Vous etes connecté");
+                Console.WriteLine("Jij bent ingelogd !");
                 return new Lid(bibliotheek, Familyname, Firstname, Birthdate);
             } while (true);
         }
         static void ZoekJouwItem(Bezoeker user)
         {
-            Console.WriteLine("Type 1 to search an item");
+            Console.WriteLine("Druk op 1 om iets op te zoeken");
             string Choice = Console.ReadLine().Trim();
             if (Choice == "1")
             {
-                Console.WriteLine("Type the ID or the title");
+                Console.WriteLine("Typ de ID of naam van item");
                 string Search = Console.ReadLine().Trim();
                 var items = user.ZoekItem(Search);
                 if (items.Count == 0)
                 {
-                    Console.WriteLine("The item was not found");
+                    Console.WriteLine("De item werd niet gevonden");
                 }
                 else
                 {
